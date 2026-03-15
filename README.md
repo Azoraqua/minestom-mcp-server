@@ -3,14 +3,14 @@
 A stdio MCP server for Minestom, implemented with the Model Context Protocol SDK and TanStack AI tool definitions.
 
 
-![NPM Version](https://img.shields.io/npm/v/minestom-mcp-server)
+![NPM Version](https://img.shields.io/npm/v/minestom-mcp)
 
 ## Install
 
 Preferred package invocation:
 
 ```bash
-npx -y minestom-mcp-server
+npx -y minestom-mcp
 ```
 
 Installed command aliases:

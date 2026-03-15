@@ -1,16 +1,16 @@
 {
-	"name": "minestom-mcp-server",
+	"name": "minestom-mcp",
 	"version": "1.0.0",
 	"description": "A Minestom MCP server with repository-aware JVM tooling.",
 	"main": "dist/server.js",
 	"module": "dist/server.js",
-	"homepage": "https://github.com/Azoraqua/minestom-mcp-server#readme",
+	"homepage": "https://github.com/Azoraqua/minestom-mcp#readme",
 	"bugs": {
-		"url": "https://github.com/Azoraqua/minestom-mcp-server/issues"
+		"url": "https://github.com/Azoraqua/minestom-mcp/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Azoraqua/minestom-mcp-server.git"
+		"url": "https://github.com/Azoraqua/minestom-mcp.git"
 	},
 	"exports": {
 		".": "./dist/server.js"
