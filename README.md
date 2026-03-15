@@ -13,6 +13,19 @@ Preferred package invocation:
 npx -y minestom-mcp
 ```
 
+Often a file like `.mcp.json` at your project root will be picked up by agents:
+
+```json
+{
+  "mcpServers": {
+    "minestom-mcp": {
+      "command": "npx",
+      "args": ["-y", "minestom-mcp"]
+    }
+  }
+}
+```
+
 Installed command aliases:
 
 ```bash
