@@ -1,0 +1,5 @@
+.idea/
+dist/
+
+pnpm-lock.yaml
+.env*.local
