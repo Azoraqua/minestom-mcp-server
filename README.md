@@ -85,7 +85,6 @@ pnpm check
 npm pack --dry-run
 npm publish
 ```
-
 For npm trusted publishing, configure npm to trust the workflow filename
 `npm-publish.yml` in `.github/workflows/`. The workflow now uses pnpm for
 dependency installation and verification, then publishes with `npm publish`
