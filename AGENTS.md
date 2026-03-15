@@ -15,6 +15,6 @@
   - public tools must stay documented in `docs/tools.md`
 - If you change a tool name, schema, or behavior, update the implementation, `src/tools.ts`, and the related docs in the same pass.
 - Keep `README.md` concise and put detailed tool behavior in `docs/tools.md`.
-- Update `MEMORY.md` with concise notes about progress, decisions, blockers, ownership, and pending work.
+- Use `MEMORY.md` for AI-facing knowledge and notes: progress, decisions, blockers, ownership, pending work, and other context worth reusing later.
 - Run `pnpm check` for normal verification. There is no `pnpm test` script right now, so note that instead of inventing one.
-- Update `CHANGELOG.md` only after checks pass, and keep entries brief and user-facing.
+- Use `CHANGELOG.md` only for concrete project changes after checks pass. Keep it brief and user-facing, and do not put memory-style notes there.
