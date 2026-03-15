@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Minestom MCP Server Docs</title>
+    <meta name="description" content="Publish-ready documentation for the Minestom MCP Server, including tool reference, JVM build inspection details, and repository-aware workflow guidance.">
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+    <div class="shell">
+        <header class="topbar">
+            <a class="brand" href="./index.html">
+                <span class="brand-mark">M</span>
+                <span>Minestom MCP Server</span>
+            </a>
+            <nav>
+                <a href="./index.html">Overview</a>
+                <a href="./tools.html">Tool Reference</a>
+                <a href="./llms.txt">LLMs</a>
+                <a href="https://minestom.net/docs/introduction">Minestom Docs</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div>
+                    <div class="eyebrow">Minestom + MCP + JVM-aware tooling</div>
+                    <h1>Documentation built for both humans and AI clients.</h1>
+                    <p>
+                        This server exposes a curated Minestom MCP surface for pattern explanation, API lookup,
+                        repository and environment scanning, Gradle and Maven build inspection, design review,
+                        implementation planning, and ecosystem discovery.
+                    </p>
+                    <p>
+                        The documentation site is designed to be readable in a browser, while the repository also ships
+                        AI-friendly references through <code>llms.txt</code> and structured tool documentation.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button primary" href="./tools.html">Browse Tool Reference</a>
+                        <a class="button" href="./llms.txt">Read AI Index</a>
+                    </div>
+                </div>
+                <div class="panel">
+                    <span class="section-label">What You Get</span>
+                    <ul class="summary-list">
+                        <li>9 MCP tools documented with inputs, outputs, and behavior notes.</li>
+                        <li>Repository-aware Minestom environment inspection across nested workspace layouts.</li>
+                        <li>Gradle and Maven build interpretation, including version catalogs and wrapper scripts.</li>
+                        <li>Publish-ready Pages deployment via GitHub Actions.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="grid cols-3">
+                <article class="panel">
+                    <h2>Repository-aware by default</h2>
+                    <p class="muted">
+                        The environment tooling treats the inspected directory as a workspace, scans subdirectories,
+                        detects candidate project roots, and treats <code>run/</code> as a strong development signal
+                        instead of a hardcoded server location.
+                    </p>
+                </article>
+                <article class="panel">
+                    <h2>JVM-native inspection</h2>
+                    <p class="muted">
+                        Because Minestom lives in the JVM ecosystem, the docs and tooling explicitly account for
+                        Gradle, Maven, wrapper scripts, Java/Kotlin layouts, version catalogs, dependencies, plugins,
+                        and project properties.
+                    </p>
+                </article>
+                <article class="panel">
+                    <h2>AI-friendly access</h2>
+                    <p class="muted">
+                        The docs include a concise landing page for humans, a detailed tool reference, and
+                        <code>llms.txt</code> so AI systems can discover the right reference documents quickly.
+                    </p>
+                </article>
+            </section>
+
+            <section class="panel">
+                <span class="section-label">Tool Surface</span>
+                <div class="chip-row">
+                    <span class="inline-code">ping</span>
+                    <span class="inline-code">get_server_info</span>
+                    <span class="inline-code">inspect_minestom_environment</span>
+                    <span class="inline-code">inspect_minestom_build</span>
+                    <span class="inline-code">explain_minestom_pattern</span>
+                    <span class="inline-code">lookup_minestom_api</span>
+                    <span class="inline-code">plan_minestom_feature</span>
+                    <span class="inline-code">review_minestom_design</span>
+                    <span class="inline-code">suggest_minestom_libraries</span>
+                </div>
+                <p class="muted">
+                    The tool reference page groups these by purpose and explains the most important inputs,
+                    outputs, and usage notes.
+                </p>
+                <a class="button" href="./tools.html">Open Tool Reference</a>
+            </section>
+
+            <section class="grid cols-2">
+                <article class="panel">
+                    <span class="section-label">Human Workflow</span>
+                    <h2>Use the docs site as an operator guide.</h2>
+                    <ul class="plain-list">
+                        <li>Start on the overview page to understand the server’s job and tool surface.</li>
+                        <li>Jump into the tool reference for exact inputs and returned structures.</li>
+                        <li>Use the JVM and build sections when validating a Minestom repo layout.</li>
+                    </ul>
+                </article>
+                <article class="panel">
+                    <span class="section-label">AI Workflow</span>
+                    <h2>Use the AI index to find the right reference fast.</h2>
+                    <div class="code-block"><code>GET /llms.txt
+
+- /tools.html       Human-oriented reference with stable headings
+- /tools.md         Markdown reference from the repository
+- /README.md        High-level project overview</code></div>
+                </article>
+            </section>
+
+            <section class="panel">
+                <span class="section-label">Publishing</span>
+                <h2>GitHub Pages is ready.</h2>
+                <p class="muted">
+                    The repository ships a Pages workflow that uploads the <code>docs/</code> directory as the
+                    deployment artifact using GitHub’s current official actions.
+                </p>
+                <div class="code-block"><code>actions/configure-pages@v5
+actions/upload-pages-artifact@v4
+actions/deploy-pages@v4</code></div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <strong>Source of truth</strong>
+            <p class="muted">
+                The tooling is grounded in the official Minestom docs, Javadocs, and ecosystem directory, with
+                repository-aware inspection layered on top for real project workflows.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
