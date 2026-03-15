@@ -74,6 +74,8 @@ The package is set up for npm publishing with:
 - a shebang-included bundled entrypoint in `dist/server.js`
 - `files` whitelisting for the publish tarball
 - `prepack` and `prepublishOnly` verification hooks
+- GitHub Actions publishing from [`.github/workflows/npm-publish.yml`](./.github/workflows/npm-publish.yml)
+  via pnpm install/check steps and npm trusted publishing
 - `publishConfig.access = public`
 
 Recommended release flow:
@@ -83,3 +85,7 @@ pnpm check
 npm pack --dry-run
 npm publish
 ```
+For npm trusted publishing, configure npm to trust the workflow filename
+`npm-publish.yml` in `.github/workflows/`. The workflow now uses pnpm for
+dependency installation and verification, then publishes with `npm publish`
+through GitHub Actions OIDC instead of a long-lived `NPM_TOKEN`.
