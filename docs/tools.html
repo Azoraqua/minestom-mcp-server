@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Minestom MCP Tool Reference</title>
+    <meta name="description" content="Detailed tool reference for the Minestom MCP Server, including repo-aware environment inspection, Gradle and Maven build parsing, and curated Minestom guidance tools.">
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+    <div class="shell">
+        <header class="topbar">
+            <a class="brand" href="./index.html">
+                <span class="brand-mark">M</span>
+                <span>Minestom MCP Server</span>
+            </a>
+            <nav>
+                <a href="./index.html">Overview</a>
+                <a href="./tools.html">Tool Reference</a>
+                <a href="./tools.md">Markdown</a>
+                <a href="./llms.txt">LLMs</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div>
+                    <div class="eyebrow">Reference</div>
+                    <h1>Public MCP tool reference</h1>
+                    <p>
+                        This page documents the stable public tool surface exposed by the Minestom MCP Server.
+                        It is designed to be readable by humans in a browser and easy to map back to the
+                        repository’s markdown and AI index files.
+                    </p>
+                </div>
+                <div class="panel">
+                    <span class="section-label">Reference Notes</span>
+                    <ul class="summary-list">
+                        <li>Tool names are shown exactly as exposed over MCP.</li>
+                        <li>Inputs and outputs are intentionally summarized rather than exhaustively schema-dumped.</li>
+                        <li>Build and environment tools are repo-aware and JVM-aware.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="grid">
+                <article class="tool-card" id="ping">
+                    <header>
+                        <div>
+                            <h2><code>ping</code></h2>
+                            <p class="muted">Health check for MCP reachability.</p>
+                        </div>
+                        <span class="pill">Meta</span>
+                    </header>
+                    <div class="spec-grid">
+                        <div class="spec-box">
+                            <h4>Inputs</h4>
+                            <ul class="plain-list">
+                                <li><code>message</code> optional string to echo back</li>
+                            </ul>
+                        </div>
+                        <div class="spec-box">
+                            <h4>Returns</h4>
+                            <ul class="plain-list">
+                                <li><code>ok</code></li>
+                                <li><code>timestamp</code></li>
+                                <li><code>echoedMessage</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tool-card" id="get-server-info">
+                    <header>
+                        <div>
+                            <h2><code>get_server_info</code></h2>
+                            <p class="muted">Server metadata, tool inventory, and knowledge-catalog coverage.</p>
+                        </div>
+                        <span class="pill">Meta</span>
+                    </header>
+                    <div class="spec-grid">
+                        <div class="spec-box">
+                            <h4>Inputs</h4>
+                            <ul class="plain-list">
+                                <li><code>includeDependencies</code> optional boolean</li>
+                            </ul>
+                        </div>
+                        <div class="spec-box">
+                            <h4>Returns</h4>
+                            <ul class="plain-list">
+                                <li><code>name</code>, <code>version</code>, <code>description</code></li>
+                                <li><code>toolCount</code> and <code>availableTools</code></li>
+                                <li><code>runtime</code></li>
+                                <li><code>knowledgeCatalog</code></li>
+                                <li>optional <code>dependencies</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tool-card" id="inspect-environment">
+                    <header>
+                        <div>
+                            <h2><code>inspect_minestom_environment</code></h2>
+                            <p class="muted">Workspace-level Minestom and JVM environment inspection.</p>
+                        </div>
+                        <span class="pill">Environment</span>
+                    </header>
+                    <p class="muted">
+                        Scans the current workspace or a provided <code>repoRoot</code>, including subdirectories.
+                        This is the right tool when you need to figure out whether a tree actually looks like a
+                        Minestom workspace and where the interesting modules live.
+                    </p>
+                    <div class="spec-grid">
+                        <div class="spec-box">
+                            <h4>Key Inputs</h4>
+                            <ul class="plain-list">
+                                <li><code>repoRoot</code> optional path to inspect</li>
+                            </ul>
+                        </div>
+                        <div class="spec-box">
+                            <h4>Key Returns</h4>
+                            <ul class="plain-list">
+                                <li><code>buildTool</code>, <code>buildFiles</code>, <code>projectRoots</code></li>
+                                <li><code>languages</code>, <code>sourceRoots</code>, <code>packageNamespaces</code></li>
+                                <li><code>entrypointFiles</code>, <code>detectedTopics</code>, <code>detectedApiSymbols</code></li>
+                                <li><code>jvmProject</code>, <code>runDirectory</code>, <code>runDirectories</code></li>
+                                <li><code>existingLibraries</code>, <code>notes</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="callout">
+                        <strong>Important:</strong> <code>run/</code> is treated as a strong development signal, not as the only
+                        possible server location.
+                    </div>
+                </article>
+
+                <article class="tool-card" id="inspect-build">
+                    <header>
+                        <div>
+                            <h2><code>inspect_minestom_build</code></h2>
+                            <p class="muted">Gradle and Maven specific build interpretation for Minestom workspaces.</p>
+                        </div>
+                        <span class="pill">Build</span>
+                    </header>
+                    <p class="muted">
+                        Use this when you need build-system detail instead of high-level environment detection.
+                        It understands common Gradle and Maven structures and returns module-level details.
+                    </p>
+                    <div class="spec-grid">
+                        <div class="spec-box">
+                            <h4>Gradle Coverage</h4>
+                            <ul class="plain-list">
+                                <li><code>plugins { ... }</code></li>
+                                <li><code>dependencies { ... }</code></li>
+                                <li><code>gradle.properties</code></li>
+                                <li><code>gradle/libs.versions.toml</code></li>
+                                <li>wrapper scripts like <code>gradlew</code></li>
+                                <li>task or script names</li>
+                            </ul>
+                        </div>
+                        <div class="spec-box">
+                            <h4>Maven Coverage</h4>
+                            <ul class="plain-list">
+                                <li><code>pom.xml</code> dependencies</li>
+                                <li><code>pom.xml</code> plugins</li>
+                                <li><code>pom.xml</code> properties</li>
+                                <li>wrapper scripts like <code>mvnw</code></li>
+                                <li>command suggestions such as <code>package</code> and <code>dependency:tree</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="spec-box">
+                        <h4>Module Returns</h4>
+                        <ul class="plain-list">
+                            <li><code>moduleRoot</code>, <code>buildTool</code>, <code>buildFiles</code>, <code>wrapperFiles</code></li>
+                            <li><code>plugins</code>, <code>dependencies</code>, <code>variables</code>, <code>commands</code></li>
+                            <li><code>notes</code> and optional <code>versionCatalog</code></li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="tool-card" id="explain-pattern">
+                    <header>
+                        <div>
+                            <h2><code>explain_minestom_pattern</code></h2>
+                            <p class="muted">Curated pattern explanation grounded in official Minestom guidance.</p>
+                        </div>
+                        <span class="pill">Knowledge</span>
+                    </header>
+                    <div class="spec-grid">
+                        <div class="spec-box">
+                            <h4>Inputs</h4>
+                            <ul class="plain-list">
+                                <li><code>topic</code> from bootstrap, instances, events, commands, scheduler, threading</li>
+                                <li><code>goal</code> optional context string</li>
+                            </ul>
+                        </div>
+                        <div class="spec-box">
+                            <h4>Returns</h4>
+                            <ul class="plain-list">
+                                <li>pattern explanation</li>
+                                <li>key classes</li>
+                                <li>lifecycle notes</li>
+                                <li>common pitfalls</li>
+                                <li>official links</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tool-card" id="lookup-api">
+                    <header>
+                        <div>
+                            <h2><code>lookup_minestom_api</code></h2>
+                            <p class="muted">Curated Minestom API lookup for common server patterns.</p>
+                        </div>
+                        <span class="pill">Knowledge</span>
+                    </header>
+                    <p class="muted">
+                        Returns the most relevant curated matches for a symbol or topic and links each result back
+                        to the Javadocs.
+                    </p>
+                </article>
+
+                <article class="tool-card" id="plan-feature">
+                    <header>
+                        <div>
+                            <h2><code>plan_minestom_feature</code></h2>
+                            <p class="muted">Implementation planning for Minestom features and JVM languages.</p>
+                        </div>
+                        <span class="pill">Planning</span>
+                    </header>
+                    <p class="muted">
+                        Produces file outlines, key APIs, implementation steps, thread-safety notes, and verification
+                        steps for common feature types such as commands, event listeners, instance setup, and scheduled tasks.
+                    </p>
+                </article>
+
+                <article class="tool-card" id="review-design">
+                    <header>
+                        <div>
+                            <h2><code>review_minestom_design</code></h2>
+                            <p class="muted">Design review against Minestom’s manager, event, instance, and threading patterns.</p>
+                        </div>
+                        <span class="pill">Planning</span>
+                    </header>
+                    <p class="muted">
+                        Useful before implementation when you want a high-signal review of fit, gaps, risky assumptions,
+                        and thread or tick concerns.
+                    </p>
+                </article>
+
+                <article class="tool-card" id="suggest-libraries">
+                    <header>
+                        <div>
+                            <h2><code>suggest_minestom_libraries</code></h2>
+                            <p class="muted">Curated ecosystem recommendation tool with optional live GitHub results.</p>
+                        </div>
+                        <span class="pill">Ecosystem</span>
+                    </header>
+                    <p class="muted">
+                        This tool always starts with curated Minestom ecosystem knowledge. When <code>repoRoot</code> is
+                        provided, it first inspects the workspace and uses detected Minestom and JVM signals to rank
+                        suggestions and suppress libraries that already appear to be present.
+                    </p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="muted">
+                Prefer the repository markdown reference if you want source-adjacent docs, and prefer
+                <code>llms.txt</code> if you are feeding this site to an AI client.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

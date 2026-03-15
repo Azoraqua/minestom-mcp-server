@@ -1,0 +1,25 @@
+# Minestom MCP Server Docs
+
+This documentation set describes the public MCP tool surface exposed by the Minestom MCP Server.
+
+Primary references:
+- /tools.html - human-oriented web reference for all public tools
+- /tools.md - markdown reference for repository readers and AI systems
+- /README.md - high-level project overview
+
+Key topics:
+- Minestom MCP tools
+- repository-aware environment inspection
+- Gradle and Maven build inspection
+- curated Minestom API and pattern guidance
+- Minestom ecosystem library suggestions
+
+Recommended reading order for AI clients:
+1. /README.md
+2. /tools.md
+3. /tools.html
+
+Important behavior notes:
+- `inspect_minestom_environment` treats the inspected directory as a workspace and scans subdirectories.
+- `inspect_minestom_build` parses Gradle `plugins`, `dependencies`, `gradle.properties`, and `gradle/libs.versions.toml`, plus Maven `pom.xml` dependencies, plugins, and properties.
+- `suggest_minestom_libraries` can use repository and JVM signals when `repoRoot` is provided.
